@@ -46,6 +46,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'omniauth-twitter'
 gem 'dotenv-rails', :groups => [:development, :test]
 
 group :production do
