@@ -1,4 +1,27 @@
 class User < ActiveRecord::Base
+  # Public: Find or create user with omniauth attributes.
+  #
+  # omniauth - Omniauth Hash.
+  #
+  # Returns a User.
+  def self.from_omniauth(omniauth)
+    where(:uid => omniauth["uid"]).first || create_from_omniauth(omniauth)
+  end
+
+  # Internal: Create user from omniauth attributes.
+  #
+  # omniauth - Omniauth Hash.
+  #
+  # Returns a User.
+  def self.create_from_omniauth(omniauth)
+    create! do |user|
+      user.uid      = omniauth["uid"]
+      user.username = omniauth["info"]["nickname"]
+      user.token    = omniauth["credentials"]["token"]
+      user.secret   = omniauth["credentials"]["secret"]
+    end
+  end
+
   # Public: Twitter username.
   # column :username
   # Returns a String.
