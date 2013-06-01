@@ -5,4 +5,12 @@ class ApplicationController < ActionController::Base
 
   # Render the homepage.
   def homepage; end
+
+  # Public: The currently signed in user or nil.
+  #
+  # Returns a User or NilClass.
+  def current_user
+    nil
+  end
+  helper_method :current_user
 end
