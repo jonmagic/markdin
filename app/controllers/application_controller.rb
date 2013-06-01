@@ -29,9 +29,16 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id
   end
 
-  # Internal Clear the current user for request and session.
+  # Internal: Clear the current user for request and session.
   def clear_current_user_for_request_and_session
     @current_user = nil
     session[:user_id] = nil
+  end
+
+  # Internal: The omniauth hash from the request env.
+  #
+  # Returns a Hash.
+  def omniauth
+    request.env['omniauth.auth']
   end
 end
