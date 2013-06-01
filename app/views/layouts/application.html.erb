@@ -10,7 +10,7 @@
   <% if current_user %>
     <%= link_to "Sign out", "" %>
   <% else %>
-    <%= link_to "Sign in", "" %>
+    <%= link_to "Sign in", "/auth/twitter" %>
   <% end %>
 
 <%= yield %>
