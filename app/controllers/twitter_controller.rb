@@ -6,7 +6,7 @@ class TwitterController < ApplicationController
     user = User.from_omniauth(omniauth)
     self.current_user = user
 
-    redirect_to root_path
+    redirect_to session[:return_to] || root_path
   end
 
   # Public: Signs user out of Markdin.

@@ -48,6 +48,7 @@ end
 
 gem 'omniauth-twitter'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'redcarpet'
 
 group :production do
   gem 'pg'

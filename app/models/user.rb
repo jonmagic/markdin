@@ -41,4 +41,7 @@ class User < ActiveRecord::Base
   # column :secret
   # Returns a String.
   validates :secret, :presence => true
+
+  # Public: Users documents.
+  has_many :documents
 end
