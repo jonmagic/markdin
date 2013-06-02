@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
   # Render the homepage.
   def homepage; end
 
+  # Public: Is the user signed in?
+  #
+  # Returns a TrueClass or FalseClass.
+  def signed_in?
+    !!current_user
+  end
+  helper_method :signed_in?
+
   # Public: The currently signed in user or nil.
   #
   # Returns a User or NilClass.
@@ -40,5 +48,12 @@ class ApplicationController < ActionController::Base
   # Returns a Hash.
   def omniauth
     request.env['omniauth.auth']
+  end
+
+  # Internal: Require the user to be signed in.
+  def signin_required
+    return if signed_in?
+    session[:return_to] = request.path if request.path
+    redirect_to "/auth/twitter"
   end
 end
